@@ -21,17 +21,32 @@ driver.get(link)
 content = driver.page_source
 soup = BeautifulSoup(content, "html.parser")
 
-time.sleep(5)
+time.sleep(3)
 
 firstName = driver.find_element("id", "consumerfield_firstName")
 lastName = driver.find_element("id", "consumerfield_lastName")
 phoneNum = driver.find_element("id", "consumerfield_phone")
 firstName.send_keys("first name")
 lastName.send_keys("last name")
-phoneNum.send_keys("phone number")
+phoneNum.send_keys("1234567890")
 
 nextBtn = driver.find_element("id", "qBtnNext")
 nextBtn.click()
+
+time.sleep(1)
+# replace next two ids with the eecs ug ids (first one might be right)
+advisingBtn = driver.find_element("id", "btnQueue_42182")
+advisingBtn.click()
+
+serviceBtn = driver.find_element("id", "addbtnidhere")
+serviceBtn.click()
+
+# this is probably fine
+apptNowBtn = driver.find_element("id", "appointmentOptionNow")
+apptNowBtn.click()
+
+exitBtn = driver.find_element("id", "btnExit")
+exitBtn.click()
 
 while True:
     val = 1
