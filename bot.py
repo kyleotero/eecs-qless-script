@@ -26,7 +26,8 @@ time.sleep(3)
 try:
     closed_page = driver.find_element("id", "page_closed")
     while closed_page:
-        time.sleep(60)
+        time.sleep(30)
+        driver.refresh()
         closed_page = driver.find_element("id", "page_closed")
 except:
     pass
