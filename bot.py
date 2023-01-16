@@ -23,6 +23,14 @@ soup = BeautifulSoup(content, "html.parser")
 
 time.sleep(3)
 
+try:
+    closed_page = driver.find_element("id", "page_closed")
+    while closed_page:
+        time.sleep(60)
+        closed_page = driver.find_element("id", "page_closed")
+except:
+    pass
+
 firstName = driver.find_element("id", "consumerfield_firstName")
 lastName = driver.find_element("id", "consumerfield_lastName")
 phoneNum = driver.find_element("id", "consumerfield_phone")
