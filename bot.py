@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.support.ui import Select
 from webdriver_manager.chrome import ChromeDriverManager
 import os
 from bs4 import BeautifulSoup
@@ -41,18 +42,24 @@ phoneNum.send_keys("1234567890")
 
 nextBtn = driver.find_element("id", "qBtnNext")
 nextBtn.click()
-
 time.sleep(1)
-# replace next two ids with the eecs ug ids (first one might be right)
-advisingBtn = driver.find_element("id", "btnQueue_42182")
-advisingBtn.click()
 
-serviceBtn = driver.find_element("id", "addbtnidhere")
+studentNum = driver.find_element("id", "customscreenfield_StudentID")
+studentNum.send_keys("123456789")
+nextBtn.click()
+time.sleep(1)
+
+select = Select(driver.find_element("id","customscreenfield_Interaction_0"))
+select.select_by_visible_text('Telephone Call')
+
+email = driver.find_element("id", "customscreenfield_Email_0")
+email.send_keys("email@gmail.com")
+nextBtn.click()
+time.sleep(1)
+
+serviceBtn = driver.find_element("id", "tt9000004114")
 serviceBtn.click()
-
-# this is probably fine
-apptNowBtn = driver.find_element("id", "appointmentOptionNow")
-apptNowBtn.click()
+time.sleep(1)
 
 exitBtn = driver.find_element("id", "btnExit")
 exitBtn.click()
