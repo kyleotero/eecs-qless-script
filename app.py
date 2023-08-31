@@ -15,22 +15,17 @@ def index():
         EMAIL = request.form['email']
         SERVICE_BTN_ID = request.form['service_btn_id']
         
-        # Schedule cron job
         schedule_cron_job()
 
     return render_template('index.html')
 
 def schedule_cron_job():
-    # Build the cron job command
     cron_command = f'/usr/bin/python3 /home/mohammad/eecs-qless-script/bot.py {FIRST_NAME} {LAST_NAME} {PHONE_NUM} {STUDENT_NUM} {EMAIL} {SERVICE_BTN_ID}'
-    # Initialize the cron tab
-    cron = CronTab(user='mohammad')  # Replace with the desired username
+    cron = CronTab(user='opc')
 
-    # Add the cron job
     job = cron.new(command=cron_command)
-    job.setall('14 22 * * *')  # Schedule for 9 AM
+    job.setall('0 9 * * *') 
 
-    # Write the cron job to the cron tab
     cron.write()
 
 if __name__ == '__main__':
