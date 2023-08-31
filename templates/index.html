@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EECS QLess Bot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>QLess Bot</h1>
+        <form id ="QLessForm" method="POST">
+            <label for="first_name">First Name:</label>
+            <input type="text" name="first_name" required>
+            
+            <label for="last_name">Last Name:</label>
+            <input type="text" name="last_name" required>
+            
+            <label for="phone_num">Phone Number:</label>
+            <input type="tel" name="phone_num" pattern="[0-9]{10}" required>
+            
+            <label for="student_num">Student Number:</label>
+            <input type="text" name="student_num" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" name="email" required>
+            
+            <label for="service_btn_id">Inquiry:</label>
+            <select name="service_btn_id" required>
+                <option value="tt9000004112">New Enrollments</option>
+                <option value="tt9000004113">Course Prerequisites</option>
+                <option value="tt9000004114">EECS GPA</option>
+                <option value="tt9000004115">General Inquiries</option>
+                <option value="tt9000004116">Lab/Tutorial Change</option>
+                <option value="tt9000004117">Section Change</option>
+                <option value="tt9000004118">Transfer Credits</option>
+                <option value="tt9000004119">Waitlist Results</option>
+            </select>
+            
+            <button id="submitButton" class="btn btn-primary" type="submit">Submit</button>
+        </form>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="successModalLabel">W</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    you should be placed in the queue right at 9am tomorrow<br>
+                    if it didn't work create an issue <a href="https://github.com/mahfoozm/eecs-qless-script/issues">here</a>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // When the form is submitted, show the success modal
+        document.getElementById("QLessForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+            $("#successModal").modal("show"); // Show the success modal
+        });
+    </script>
+</body>
+</html>

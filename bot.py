@@ -1,3 +1,4 @@
+import sys
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import Select
@@ -6,17 +7,22 @@ import os
 from bs4 import BeautifulSoup
 import time
 
-FIRST_NAME = "first nam"
-LAST_NAME = "last nam"
-PHONE_NUM = "1234567890"
-STUDENT_NUM = "123456789"
-EMAIL = "email@gmail.com"
-SERVICE_BTN_ID = "tt9000004114"
+
+if len(sys.argv) != 7:
+    print("Usage: python3 bot.py FIRST_NAME LAST_NAME PHONE_NUM STUDENT_NUM EMAIL SERVICE_BTN_ID")
+    sys.exit(1)
+
+FIRST_NAME = sys.argv[1]
+LAST_NAME = sys.argv[2]
+PHONE_NUM = sys.argv[3]
+STUDENT_NUM = sys.argv[4]
+EMAIL = sys.argv[5]
+SERVICE_BTN_ID = sys.argv[6]
 
 chrome_options = webdriver.ChromeOptions()
-chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
 chrome_options.add_argument("--disable-dev-shm-usage")
 chrome_options.add_argument("--no-sandbox")
+chrome_options.add_argument('--headless=new')
 
 link = "https://kiosk.ca1.qless.com/kiosk/app/home/19713"
 
@@ -71,5 +77,4 @@ time.sleep(1)
 exitBtn = driver.find_element("id", "btnExit")
 exitBtn.click()
 
-while True:
-    val = 1
+driver.quit()
