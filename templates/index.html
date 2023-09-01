@@ -72,22 +72,22 @@
 <body>
     <div class="container">
         <h1>QLess Bot</h1>
-        <form id ="QLessForm" method="POST">
+        <form id ="QLessForm" method="POST" action="/">
             <label for="first_name">First Name:</label>
             <input type="text" name="first_name" required>
-            
+
             <label for="last_name">Last Name:</label>
             <input type="text" name="last_name" required>
-            
+
             <label for="phone_num">Phone Number:</label>
             <input type="tel" name="phone_num" pattern="[0-9]{10}" required>
-            
+
             <label for="student_num">Student Number:</label>
             <input type="text" name="student_num" required>
-            
+
             <label for="email">Email:</label>
             <input type="email" name="email" required>
-            
+
             <label for="service_btn_id">Inquiry:</label>
             <select name="service_btn_id" required>
                 <option value="tt9000004112">New Enrollments</option>
@@ -99,7 +99,7 @@
                 <option value="tt9000004118">Transfer Credits</option>
                 <option value="tt9000004119">Waitlist Results</option>
             </select>
-            
+
             <button id="submitButton" class="btn btn-primary" type="submit">Submit</button>
         </form>
     </div>
@@ -124,13 +124,12 @@
             </div>
         </div>
     </div>
-
-    <script>
-        // When the form is submitted, show the success modal
-        document.getElementById("QLessForm").addEventListener("submit", function (event) {
-            event.preventDefault(); // Prevent the form from submitting normally
-            $("#successModal").modal("show"); // Show the success modal
-        });
-    </script>
+<script>
+    {% if show_modal %}
+    $(document).ready(function() {
+        $("#successModal").modal("show"); // Show the success modal
+    });
+    {% endif %}
+</script>
 </body>
 </html>
