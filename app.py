@@ -41,10 +41,7 @@ def schedule_cron_job():
 
     job = cron.new(command=cron_command)
     job.setall(f'{cron_minute} {cron_hour} {cron_day} {cron_month} {cron_day_of_week}')
-
-    print(job, flush=True)
-    print(cron_command, flush=True)
-    print("\n")
+    
     cron.write()
 
 if __name__ == '__main__':
