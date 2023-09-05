@@ -31,7 +31,7 @@ def main():
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument("--disable-dev-shm-usage")
         chrome_options.add_argument("--no-sandbox")
-        chrome_options.add_argument('--headless=new')
+        #chrome_options.add_argument('--headless=new')
 
         link = "https://kiosk.ca1.qless.com/kiosk/app/home/19713"
 
@@ -46,15 +46,14 @@ def main():
 
         time.sleep(5)
 
-        try:
-            closed_page = driver.find_element("id", "page_closed")
-            while closed_page:
+        for _ in range(30):
+            try:
+                closed_page = driver.find_element("id", "page_closed")
                 logging.info("Queue is closed")
                 time.sleep(30)
                 driver.refresh()
-                closed_page = driver.find_element("id", "page_closed")
-        except:
-            pass
+            except:
+                break
 
         firstName = driver.find_element("id", "consumerfield_firstName")
         lastName = driver.find_element("id", "consumerfield_lastName")
@@ -84,6 +83,10 @@ def main():
         serviceBtn = driver.find_element("id", SERVICE_BTN_ID)
         serviceBtn.click()
         time.sleep(1)
+
+        success_message = driver.find_element("id", "successPhoneMsg")
+        message_text = success_message.text
+        logging.info("Success Message:", message_text)
 
         exitBtn = driver.find_element("id", "btnExit")
         exitBtn.click()
